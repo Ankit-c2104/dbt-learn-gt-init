@@ -2,7 +2,7 @@ models:
   - name: stg_Jaffle_shop__customers
     description: customer dim data
     columns:
-      - name: cumtomer_id
+      - name: customer_id
         data_tests:
           - unique
           - not_null

@@ -1,6 +1,6 @@
 sources:
   - name: jaffle_shop # typically the name of the schema, but can name it something else as well
-    database: raw # it by defaultassumes the database is the target database (ANALYTICS), but in our case the source database is RAW
+    database: raw # it by default assumes the database is the target database (ANALYTICS), but in our case the source database is RAW
     schema: jaffle_shop 
     tables: 
       - name: customers
@@ -17,3 +17,30 @@ sources:
               period: hour
           
           loaded_at_field: _etl_loaded_at
+
+
+  - name: stripe # typically the name of the schema, but can name it something else as well
+    database: raw # it by default assumes the database is the target database (ANALYTICS), but in our case the source database is RAW
+    schema: stripe 
+    tables: 
+      - name: payment
+        config:
+          freshness:
+            warn_after: 
+              count: 24
+              period: hour
+            error_after:
+              count: 48 # missed 2 days of worth of freshness
+              period: hour
+          loaded_at_field: _batched_at
+
+
+
+
+# generated from codegen packcage
+# sources:
+#   - name: jaffle_shop
+#     database: raw
+#     tables:
+#       - name: customers
+#       - name: orders

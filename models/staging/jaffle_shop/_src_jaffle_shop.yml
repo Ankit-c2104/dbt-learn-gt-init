@@ -1,19 +1,24 @@
 sources:
-  - name: jaffle_shop # typically the name of the schema, but can name it something else as well
+  - name: jaffle_shop ## SOURCE NAME # typically the name of the schema, but can name it something else as well
+    description: A clone of Postgre's database.
     database: raw # it by default assumes the database is the target database (ANALYTICS), but in our case the source database is RAW
     schema: jaffle_shop 
+
     tables: 
       - name: customers
-        description: "This table contains all the customers of Jaffle Shop"
-        
+        description: This table contains all the customers of Jaffle Shop
         columns:   ## adding source tests to the source table
           - name: id ## original name in the source table
+            description: Primary key of the source customer's table
             data_tests:
               - unique
               - not_null
 
       - name: orders
-        description: "This table contains all the orders of Jaffle Shop"
+        description: This table contains all the orders of Jaffle Shop
+        columns:
+          - name: id
+            description: Primary key of the source order's table
         config:
           freshness:
             warn_after: 

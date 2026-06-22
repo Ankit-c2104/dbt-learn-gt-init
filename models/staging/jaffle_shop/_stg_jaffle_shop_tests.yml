@@ -1,0 +1,28 @@
+models:
+  - name: stg_jaffle_shop__customers
+    columns: 
+      - name: customer_id # primary key
+        data_tests:
+          - unique
+          - not_null
+  
+  - name: stg_jaffle_shop__orders
+    columns: 
+    # test 1
+      - name: order_id # primary key
+        data_tests:
+          - unique
+          - not_null
+    # test 2
+      - name: status
+        data_tests:
+          - accepted_values: 
+              arguments:
+                values: ['placed', 'shipped', 'completed', 'returned', 'return_pending']
+    # test 3
+      - name: customer_id # original name as user id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref ('stg_jaffle_shop__customers')
+                field: customer_id # from customers table

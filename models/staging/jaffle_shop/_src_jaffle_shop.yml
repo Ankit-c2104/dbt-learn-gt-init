@@ -1,6 +1,7 @@
 sources:
   - name: jaffle_shop ## SOURCE NAME # typically the name of the schema, but can name it something else as well
     description: A clone of Postgre's database.
+    
     database: raw # it by default assumes the database is the target database (ANALYTICS), but in our case the source database is RAW
     schema: jaffle_shop 
 
